@@ -82,7 +82,7 @@ void sci_uart6_rxi_isr(void)
             s_callbacklists[6].rxfun(&param);
         }
     }
-    R_ICU->IELSR_b[5].IR = 0;
+    R_ICU->IELSR_b[SCI6_RXI_IRQn].IR = 0;
 }
 
 /**
@@ -113,7 +113,7 @@ void sci_uart6_txi_isr(void)
             R_SCI6->SCR_b.TEIE = 1;
         }
      }
-    R_ICU->IELSR_b[6].IR = 0;
+    R_ICU->IELSR_b[SCI6_TXI_IRQn].IR = 0;
 }
 
 /**
@@ -141,7 +141,7 @@ void sci_uart6_tei_isr(void)
             R_SCI6->SCR_b.TEIE = 0;
         }
      }
-    R_ICU->IELSR_b[7].IR = 0;
+    R_ICU->IELSR_b[SCI6_TEI_IRQn].IR = 0;
 }
 
 /**
@@ -176,7 +176,7 @@ void sci_uart6_eri_isr(void)
     }
     /*3.清除中断标志*/
     R_SCI6->SSR = status & (~(uint8_t)1<<3)  & (~(uint8_t)1<<4)  & (~(uint8_t)1<<5);  /* 写0清标志 */
-    R_ICU->IELSR_b[8].IR = 0;
+    R_ICU->IELSR_b[SCI6_ERI_IRQn].IR = 0;
 }
 
 /**
@@ -188,7 +188,7 @@ void sci_uart6_eri_isr(void)
  */
 void sci_uart6_am_isr(void)
 {
-
+    R_ICU->IELSR_b[SCI6_AM_IRQn].IR = 0;
 }
 
 /*****************************************************************************
@@ -400,7 +400,7 @@ int8_t bsp_uart_init(uart_id_e id)
     {
     case UART_ID_6:  /*UART6*/
         /*使能时钟 Systeminit PCLKA已经设置分频值 */
-        R_MSTP->MSTPCRB_b.MSTPB25 = 0;
+        // R_MSTP->MSTPCRB_b.MSTPB25 = 0; 需要解锁
 
         R_BSP_MODULE_START(FSP_IP_SCI, 6);
 

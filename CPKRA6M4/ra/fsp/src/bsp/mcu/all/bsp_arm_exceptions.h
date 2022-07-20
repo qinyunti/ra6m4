@@ -55,6 +55,11 @@ typedef enum IRQn
     SCI6_TEI_IRQn         = 7,
     SCI6_ERI_IRQn         = 8,
     SCI6_AM_IRQn          = 9,
+    CAN0_RXERR_IRQn       = 10,
+    CAN0_RXFIFO_IRQn      = 11,
+    CAN0_TXFIFO_IRQn      = 12,
+    CAN0_RX_IRQn          = 13,
+    CAN0_TX_IRQn          = 14,
 } IRQn_Type;
 
 #endif

@@ -15,6 +15,12 @@
             [7] = sci_uart6_tei_isr, /* SCI6 TEI (Transmit end) */
             [8] = sci_uart6_eri_isr, /* SCI6 ERI (Receive error) */
             [9] = sci_uart6_am_isr,  /* SCI6 AM (Address match) */
+
+            [10] = can0_rxerr_isr,  /*  Error interrupt */
+            [11] = can0_rxfifo_isr,  /*  Receive FIFO interrupt */
+            [12] = can0_txfifo_isr,  /*  Transmit FIFO interrupt */
+            [13] = can0_rx_isr,  /*  Reception complete interrupt */
+            [14] = can0_tx_isr,   /*  Transmission complete interrupt */
         };
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENTRIES] =
         {
@@ -29,5 +35,11 @@
             [7] = BSP_PRV_IELS_ENUM(EVENT_SCI6_TEI), /* SCI6 TEI (Transmit end) */
             [8] = BSP_PRV_IELS_ENUM(EVENT_SCI6_ERI), /* SCI6 ERI (Receive error) */
             [9] = BSP_PRV_IELS_ENUM(EVENT_SCI6_AM),  /* SCI6 AM (Address match) */
+
+            [10] = BSP_PRV_IELS_ENUM(EVENT_CAN0_ERROR),       /*  Error interrupt */
+            [11] = BSP_PRV_IELS_ENUM(EVENT_CAN0_FIFO_RX),     /*  Receive FIFO interrupt */
+            [12] = BSP_PRV_IELS_ENUM(EVENT_CAN0_FIFO_TX),     /*  Transmit FIFO interrupt */
+            [13] = BSP_PRV_IELS_ENUM(EVENT_CAN0_MAILBOX_RX),  /*  Reception complete interrupt */
+            [14] = BSP_PRV_IELS_ENUM(EVENT_CAN0_MAILBOX_TX),  /*  Transmission complete interrupt */
         };
         #endif

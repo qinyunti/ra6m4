@@ -14,6 +14,8 @@
 #include <rtdevice.h>
 #include "bsp_api.h"
 #include "app_uartcomu.h"
+#include "app_cancomu.h"
+
 #define LED3_PIN    BSP_IO_PORT_01_PIN_06
 #define USER_INPUT  "P105"
 
@@ -24,6 +26,8 @@ void hal_entry(void)
     SystemCoreClockUpdate();
     rt_kprintf("\nCore:%dHz!\n",SystemCoreClock);
     rt_kprintf("\nPCLKA:%dHz!\n",BSP_STARTUP_PCLKA_HZ);
+    int pclkb = BSP_STARTUP_PCLKB_HZ;
+    rt_kprintf("\nPCLKB:%dHz!\n",pclkb);
 
     R_PMISC->PWPR_b.B0WI = 0;   /* ½âËø PmnPFS */
     R_PMISC->PWPR_b.PFSWE = 1;
@@ -43,6 +47,8 @@ void hal_entry(void)
     R_PMISC->PWPR_b.B0WI = 1;
 
     app_uartcomu_init();
+    app_cancomu_init();
+    uint32_t id = 0;
     while (1)
     {
         //R_PORT1->PCNTR3_b.POSR = (uint16_t)1<<6; /* ÁÁ*/
@@ -61,6 +67,16 @@ void hal_entry(void)
         R_PMISC->PWPR_b.PFSWE = 0;   /* Ëø¶¨ PmnPFS */
         R_PMISC->PWPR_b.B0WI = 1;
         rt_thread_mdelay(500);
+
+        can_msg_st msg;
+        msg.id = 0x80000000;
+        msg.dlc = 8;
+        msg.id |= id++;
+        for(int i=0;i<8;i++)
+        {
+            msg.data[i] = msg.id*8+i;
+        }
+        //can_tx(CAN_ID_0,&msg,10);
     }
 }
 
