@@ -81,7 +81,7 @@ sci_uart_instance_ctrl_t     g_uart7_ctrl;
 #if defined(VECTOR_NUMBER_SCI7_RXI)
                 .rxi_irq             = VECTOR_NUMBER_SCI7_RXI,
 #else
-                .rxi_irq             = FSP_INVALID_VECTOR,
+                .rxi_irq             = SCI7_RXI_IRQn,
 #endif
 #if defined(VECTOR_NUMBER_SCI7_TXI)
                 .txi_irq             = VECTOR_NUMBER_SCI7_TXI,

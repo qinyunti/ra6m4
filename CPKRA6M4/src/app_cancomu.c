@@ -109,3 +109,13 @@ void app_cancomu_init(void)
     RT_ASSERT(canrxtid != RT_NULL);
     rt_thread_startup(canrxtid);
 }
+
+
+static long cmd_test(void)
+{
+    rt_kprintf("cmd_test\n");
+
+    return 0;
+}
+MSH_CMD_EXPORT(cmd_test, test cmd);
+
