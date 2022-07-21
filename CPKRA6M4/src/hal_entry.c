@@ -76,7 +76,7 @@ void hal_entry(void)
         {
             msg.data[i] = msg.id*8+i;
         }
-        //can_tx(CAN_ID_0,&msg,10);
+        can_tx(CAN_ID_0,&msg,10);
     }
 }
 
