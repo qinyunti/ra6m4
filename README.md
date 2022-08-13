@@ -4,6 +4,6 @@
 基于RA6M4的虚拟仪器开发
 
 #### 参见
-[详见](https://club.rt-thread.org/ask/article/7b936fed1e561ecc.html"基于RT-Thread+RA6M4的虚拟仪器开发-汇总")
+[基于RT-Thread+RA6M4的虚拟仪器开发-汇总](https://club.rt-thread.org/ask/article/7b936fed1e561ecc.html)
 
 
